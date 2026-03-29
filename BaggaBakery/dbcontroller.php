@@ -1,12 +1,16 @@
 <?php
 class DBController {
-	var $host = "localhost";
-	private $user = "root";
-	private $password = "";
-	var $database = "blog_samples";
+	var $host;
+	private $user;
+	private $password;
+	var $database;
 	var $conn;
-	
+
 	function __construct() {
+		$this->host = getenv('DB_HOST') ?: 'localhost';
+		$this->user = getenv('DB_USER') ?: 'root';
+		$this->password = getenv('DB_PASSWORD') ?: '';
+		$this->database = getenv('DB_NAME') ?: 'blog_samples';
 		$this->conn = $this->connectDB();
 	}
 	
